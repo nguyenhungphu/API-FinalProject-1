@@ -1,6 +1,5 @@
 const { src, dest, series, parallel } = require("gulp");
 const cssnano = require("cssnano");
-const imagemin = require("gulp-imagemin");
 const autoprefixer = require("autoprefixer");
 const postcss = require("gulp-postcss");
 const sourcemaps = require("gulp-sourcemaps");
@@ -25,8 +24,4 @@ function styleTask() {
     .pipe(dest("dist/css"));
 }
 
-function imageTask() {
-  return src("src/*.png").pipe(imagemin()).pipe(dest("dist/png"));
-}
-
-exports.default = series(htmlTask, parallel(styleTask, imageTask, scriptTask));
+exports.default = series(htmlTask, parallel(styleTask, scriptTask));
